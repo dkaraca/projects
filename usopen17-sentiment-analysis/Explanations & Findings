@@ -4,18 +4,46 @@ Positive and negative tweets provided by nltk's twitter_samples corpus are used 
 After trials on different kinds of classifiers, this model was chosen as the best performer. Multinomial Naive Bayes model was not 
 chosen due to the fact that both the training and application datasets consisted of short texts.
 
-2. Features:
+2. Preprocessing:
+
+All urls, mentions, hashtags, punctuation, emoticons, stopwords (using nltk) were removed at the preprocessing step.
+
+3. Features:
 
 After exploratory analysis on the training dataset, document frequency parameters were determined and domain specific stopwords such as
-"follow" were removed. This decreased the noise in the training dataset.
+"follow" were removed. This decreased the noise in the training dataset. Just unigrams were taken into consideration as features as
+a result of testing; it also made sense in this domain as most samples consisted of approximately 10 tokens.
 
-3. Results:
+4. Results:
 
-In the 10-fold cross-validation step, the model achieved an average accuracy of 75.1%. Mean squared error was 0.172 and the area under the
-
+In the 10-fold cross-validation step, performance of the model was as follows:
 
 Average Precision: 0.751007
 Average MSE: 0.172356
 Average AUC: 0.750939
-Fitting the model...
-Precision: 0.879273 & MSE: 0.087508 & AUC Score: 0.879166
+
+An average AUC score showed that the model had acceptable results in True Positives and False Positives. 
+
+Following the cross-validation step, a Bernoulli Naive Bayes classifier was trained using a random 70% of the entire dataset. Following 
+are the performance metrics of the final model that was used in sentiment analysis of usopen tweets:
+
+Precision: 0.879273 
+MSE: 0.087508 
+AUC Score: 0.879166
+
+Based on these performance results, training of the model was concluded.
+
+Visualizations of top 20 positive and negative features based on the log probabilities obtained by the trained model.
+
+A surprising finding of this visualization is that some positive sentiment words such as 'like' and 'want' appear as top features for
+both the positive and the negative class. This can be due to the noise in the training data, therefore a more precise preprocessing step
+might be able to overcome this.
+
+5. Possible Improvements:
+
+Preprocessing is key for sentiment analysis in tweets; the raw text data has an incredible amount of noise due to hashtags, mentions,
+emoticons, spelling errors and use of slang words. These features can be learned by training a word embedding model over a larger 
+set of data. As a result, these word embeddings can be used to vectorize sentences in a more feasible and informative way. 
+Deep learning models such as CNN or LSTM can be used in order to classify sentences using word embeddings to capture special structures
+and patterns that would result in such classification of a given sample. Current research work in classifying customer suggestions in a
+given product review can be found in the "research" repository.
