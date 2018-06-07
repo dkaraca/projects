@@ -40,7 +40,7 @@ both the positive and the negative class. This can be due to the noise in the tr
 might be able to overcome this.
 
 Visualizations for the analysis of tweets with mentions of "Roger Federer" (and a few other keywords that are widely used) can be found
-in sentiment-results-federer.png.
+in federer-top-positive.png and federer-top-negative.png.
 
 5. Possible Improvements:
 
