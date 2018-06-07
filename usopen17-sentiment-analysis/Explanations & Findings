@@ -39,6 +39,9 @@ A surprising finding of this visualization is that some positive sentiment words
 both the positive and the negative class. This can be due to the noise in the training data, therefore a more precise preprocessing step
 might be able to overcome this.
 
+Visualizations for the analysis of tweets with mentions of "Roger Federer" (and a few other keywords that are widely used) can be found
+in sentiment-results-federer.png.
+
 5. Possible Improvements:
 
 Preprocessing is key for sentiment analysis in tweets; the raw text data has an incredible amount of noise due to hashtags, mentions,
@@ -47,3 +50,6 @@ set of data. As a result, these word embeddings can be used to vectorize sentenc
 Deep learning models such as CNN or LSTM can be used in order to classify sentences using word embeddings to capture special structures
 and patterns that would result in such classification of a given sample. Current research work in classifying customer suggestions in a
 given product review can be found in the "research" repository.
+
+Another possible improvement would be having neutral labels in addition to positive and negative classes. This would make the results 
+more realistic.
