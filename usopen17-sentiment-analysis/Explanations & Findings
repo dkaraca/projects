@@ -1,0 +1,21 @@
+1. Training set:
+
+Positive and negative tweets provided by nltk's twitter_samples corpus are used in order to train a Bernoulli Naive Bayes classifier.
+After trials on different kinds of classifiers, this model was chosen as the best performer. Multinomial Naive Bayes model was not 
+chosen due to the fact that both the training and application datasets consisted of short texts.
+
+2. Features:
+
+After exploratory analysis on the training dataset, document frequency parameters were determined and domain specific stopwords such as
+"follow" were removed. This decreased the noise in the training dataset.
+
+3. Results:
+
+In the 10-fold cross-validation step, the model achieved an average accuracy of 75.1%. Mean squared error was 0.172 and the area under the
+
+
+Average Precision: 0.751007
+Average MSE: 0.172356
+Average AUC: 0.750939
+Fitting the model...
+Precision: 0.879273 & MSE: 0.087508 & AUC Score: 0.879166
