@@ -41,6 +41,12 @@ might be able to overcome this.
 
 Visualizations for the analysis of tweets with mentions of "Roger Federer" (and a few other keywords that are widely used) can be found
 in federer-top-positive.png and federer-top-negative.png.
+Although these don't give us very special insights due to the number of frequent domain specific words, this can be inclded as part of the
+future work; a classifier can be built with thorough analysis of the extracted data. Text samples can be clustered using a Gibbs Sampling
+Dirichlet Mixture Model that performs well with short data and sparse feature vector like this, and these labels of tis clusterig
+can also be used as an additional feature to improve performance.
+Key phrases can be detected and used as part of the feature matrix. In addition to this, we can see that player and country names frequently
+appear in the top words visualizations; these can be removed in order to get more valuable insights.
 
 5. Possible Improvements:
 
