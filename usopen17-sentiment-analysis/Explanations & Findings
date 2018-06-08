@@ -1,0 +1,61 @@
+1. Training set:
+
+Positive and negative tweets provided by nltk's twitter_samples corpus are used in order to train a Bernoulli Naive Bayes classifier.
+After trials on different kinds of classifiers, this model was chosen as the best performer. Multinomial Naive Bayes model was not 
+chosen due to the fact that both the training and application datasets consisted of short texts.
+
+2. Preprocessing:
+
+All urls, mentions, hashtags, punctuation, emoticons, stopwords (using nltk) were removed at the preprocessing step.
+
+3. Features:
+
+After exploratory analysis on the training dataset, document frequency parameters were determined and domain specific stopwords such as
+"follow" were removed. This decreased the noise in the training dataset. Just unigrams were taken into consideration as features as
+a result of testing; it also made sense in this domain as most samples consisted of approximately 10 tokens.
+
+4. Results:
+
+In the 10-fold cross-validation step, performance of the model was as follows:
+
+Average Precision: 0.751007
+Average MSE: 0.172356
+Average AUC: 0.750939
+
+An average AUC score showed that the model had acceptable results in True Positives and False Positives. 
+
+Following the cross-validation step, a Bernoulli Naive Bayes classifier was trained using a random 70% of the entire dataset. Following 
+are the performance metrics of the final model that was used in sentiment analysis of usopen tweets:
+
+Precision: 0.879273 
+MSE: 0.087508 
+AUC Score: 0.879166
+
+Based on these performance results, training of the model was concluded.
+
+Visualizations of top 20 positive and negative features based on the log probabilities obtained by the trained model.
+
+A surprising finding of this visualization is that some positive sentiment words such as 'like' and 'want' appear as top features for
+both the positive and the negative class. This can be due to the noise in the training data, therefore a more precise preprocessing step
+might be able to overcome this.
+
+Visualizations for the analysis of tweets with mentions of "Roger Federer" (and a few other keywords that are widely used) can be found
+in federer-top-positive.png and federer-top-negative.png.
+Although these don't give us very special insights due to the number of frequent domain specific words, this can be inclded as part of the
+future work; a classifier can be built with thorough analysis of the extracted data. Text samples can be clustered using a Gibbs Sampling
+Dirichlet Mixture Model that performs well with short data and sparse feature vector like this, and these labels of tis clusterig
+can also be used as an additional feature to improve performance.
+Key phrases can be detected and used as part of the feature matrix. In addition to this, we can see that player and country names frequently
+appear in the top words visualizations; these can be removed in order to get more valuable insights.
+
+5. Possible Improvements:
+
+Preprocessing is key for sentiment analysis in tweets; the raw text data has an incredible amount of noise due to hashtags, mentions,
+emoticons, spelling errors and use of slang words. These features can be learned by training a word embedding model over a larger 
+set of data. As a result, these word embeddings can be used to vectorize sentences in a more feasible and informative way. 
+Deep learning models such as CNN or LSTM can be used in order to classify sentences using word embeddings to capture special structures
+and patterns that would result in such classification of a given sample. Current research work in classifying customer suggestions in a
+given product review can be found in the "research" repository.
+
+Another possible improvement would be having neutral labels in addition to positive and negative classes. This would make the results 
+more realistic.
