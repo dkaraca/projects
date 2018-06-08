@@ -23,11 +23,10 @@ def preprocess(revs):
 	#	revs = pickle.load(f)
 
 	processed_tweets = []
-
 	for i in range(len(revs)):
 		try:
 			sentence = html_parser.unescape(revs[i])
-			sentence = sentence.decode('utf8').encode('ascii','ignore')
+			sentence = sentence.decode('utf8').encode('ascii','ignore').lower()
 			# remove all mentions
 			processed = re.sub(r'([@?])(\w+)\b',' ',sentence)
 
@@ -38,7 +37,6 @@ def preprocess(revs):
 			#processed = processed.replace('#',' ')
 			# remove all urls
 			processed = re.sub(r'^http\S+', '', processed)
-			processed = processed.replace('http',' ')
 			# place whitespace next to each punctuation
 			processed = re.sub('([.,!?():;-])', r' \1 ', processed)
 			# remove extra whitespace
@@ -46,7 +44,7 @@ def preprocess(revs):
 			# remove all punctuation and symbols
 			processed = re.sub(r'[^\P{P}a-zA-Z ]+','',processed)
 			# word tokenize, stem and transform back into one string and remove retweet mentions
-			words = [lem.lemmatize(word.lower()) for word in word_tokenize(processed) if word.isalpha() and len(word) > 1 and word not in stop_words and word != 'follow']
+			words = [lem.lemmatize(word.lower()) for word in word_tokenize(processed) if word.isalpha() and len(word) > 1 and word not in stop_words and word != 'follow' and word != 'rt']
 			if len(words) > 1:
 				words = ' '.join(elem for elem in [word for word in words if len(word) > 1])
 				processed_tweets.append(words.strip())
@@ -60,4 +58,4 @@ def preprocess(revs):
 			print(e)
 
 	return processed_tweets
-	#pd.DataFrame({'processed': list(set(processed_tweets))}).to_csv('C:/Users/user/Desktop/PythonPrograms/twitterAnalysis/processed_tweets3.csv')
+	#pd.DataFrame({'processed': list(set(processed_tweets))}).to_csv('processed_tweets.csv')
